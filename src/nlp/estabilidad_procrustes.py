@@ -123,13 +123,13 @@ def compute_cosine_similarity(model1,model2,word):
     vector2 = model2.wv[word].reshape(1,-1)
     return(cosine_similarity(X=vector1, Y=vector2)[0][0])
 
-def entrenar_word2vec(sentencias, size=50, window=10, min_count=2,  w=4, s=1, e=50, seed=1):
+def entrenar_word2vec(sentencias, size=100, window=8, min_count=2,  w=1, s=1, e=100, seed=42):
     return Word2Vec(sentencias, vector_size=size, window=window, min_count=min_count, workers=w, sg= s, epochs=e, seed=seed)
 
 def pares_primer_paso(lista_items):
     return [(lista_items[i],lista_items[i+1]) for i in range(len(lista_items)-1)]
 
-def entrenar_modelos_periodos(iter, df, m_dir, tv= 50, v= 10, mf= 2, w= 4, s= 1 , e= 50, se= 1):
+def entrenar_modelos_periodos(iter, df, m_dir, tv= 100, v= 8, mf= 2, w= 1, s= 1 , e= 100, se= 42):
 
     # Entrenar modelos de Word2Vec para cada período
     for anios5, corpus in tqdm(zip(df['Periodo_5anios'], df['corpus'])):
@@ -257,7 +257,7 @@ def comun_vocabulario_iter(iter,anios5_pares,a_dir,periodo_sim_list):
     
         for palabra in tqdm(comun_vocab): 
             cos_sim = compute_cosine_similarity(m1, m2, palabra)
-            palabras_masSim_period0 = m1.wv.most_similar(positive=[palabra], topn=10)
+            palabras_masSim_period0 = m1.wv.most_similar(positive=[palabra], topn=10) # promedio de cantidad palabras por título normalizado es 9
             palabras_masSim_period1 = m2.wv.most_similar(positive=[palabra], topn=10)
             periodo_sim_list.append([iter, anio5_par, palabra, cos_sim, len(comun_vocab),
                                                 palabras_masSim_period0, palabras_masSim_period1])
@@ -270,17 +270,18 @@ def comun_vocabulario_iter(iter,anios5_pares,a_dir,periodo_sim_list):
 if __name__ == "__main__":
 
     # Config modelo https://radimrehurek.com/gensim/models/word2vec.html
-    tam_vector = 50  # Dimensionalidad de los vectores de palabras.
-    ventana = 10  # ventana ( int , opcional ): distancia máxima entre la palabra actual y la palabra prevista dentro de una oración.
+    tam_vector = 100 # 50  Dimensionalidad de los vectores de palabras.
+    ventana = 8  # 10 ventana ( int , opcional ): distancia máxima entre la palabra actual y la palabra prevista dentro de una oración.
     min_frec = 2 #  Ignora todas las palabras con una frecuencia total menor que esta.
-    w = 4  # utilice estos muchos subprocesos de trabajo para entrenar el modelo (=entrenamiento más rápido con máquinas de múltiples núcleos).
+    w = 1  # utilice estos muchos subprocesos de trabajo para entrenar el modelo (=entrenamiento más rápido con máquinas de múltiples núcleos).
     s = 1 # Algoritmo de entrenamiento: 1 para skip-gram; de lo contrario, CBOW.
-    e = 50 # Número de iteraciones (épocas) en el corpus. (Anteriormente: iter )
+    e = 100 # 50 Número de iteraciones (épocas) en el corpus. (Anteriormente: iter )
     semilla = 1 # seed ( int , opcional ): Semilla para el generador de números aleatorios. 
-    iteracion = 10
+    iteracion = 50  # debería proporcionar una estimación más robusta del cambio semántico al promediar la variabilidad introducida por las diferentes semillas.
+
 
     # Crear directorio para algoritmo de cambio semántico
-    modelo_dir =  RESULTADOS_DIR+ './archivos_out/modelos/estabilidad_procrustes/'
+    modelo_dir =  RESULTADOS_DIR+ '/archivos_out/modelos_swmwosge_1008211100/estabilidad_procrustes/'
     if not os.path.exists(modelo_dir):
         print('Creando directorio de modelo...')
         os.makedirs(modelo_dir)
@@ -334,13 +335,12 @@ if __name__ == "__main__":
 
     iter_periodos_df = iter_periodos_df.sort_values('similaridad_semantica')
 
-    print('Palabras con la menor similitud de coseno / el mayor cambio')
-    print(iter_periodos_df.head(20))
+    print('Top 10 - Palabras con la menor similitud de coseno / el mayor cambio')
+    print(iter_periodos_df.head(10))
 
-    print('Palabras con la mayor similitud de coseno / menor cambio')
-    print(iter_periodos_df.tail(20))
+ 
 
-    iter_periodos_df.to_csv(RESULTADOS_DIR+'/archivos_out/estabilidad_procrustes'+'_iter'+str(iteracion)+
+    iter_periodos_df.to_csv(modelo_dir+'estabilidad_procrustes'+'_iter'+str(iteracion)+
                             '_tam'+str(tam_vector)+'.csv', 
                             index=False)
     
@@ -378,7 +378,7 @@ if __name__ == "__main__":
     plt.xlabel('k', fontsize=18)
     plt.ylabel('Interseccion@k', fontsize=18)
     plt.title('Estabilidad por Procrustes', fontsize=20)
-    plt.savefig(RESULTADOS_DIR+'/archivos_out/estabilidad_procrustes'+'_iter'+str(iteracion)+
+    plt.savefig(modelo_dir+'/estabilidad_procrustes'+'_iter'+str(iteracion)+
                             '_tam'+str(tam_vector)+'.png', dpi=200,  bbox_inches='tight')
 
     

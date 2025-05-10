@@ -25,6 +25,8 @@ import spacy
 from spacy.lang.es.stop_words import STOP_WORDS
 import textacy
 import textacy.preprocessing as tprep
+import datetime
+from argparse import ArgumentParser
 
 
 
@@ -152,7 +154,7 @@ def lematizar(texto, etiquetas_permitidas=['NOUN', 'ADJ', 'VERB', 'ADV']):
         token.lemma_ if token.lemma_ not in ['-PRON-'] else ''
         for token in doc if token.pos_ in etiquetas_permitidas
     ])
-    print(lemas)
+    #print(lemas)
     return lemas
 
 
@@ -251,47 +253,66 @@ def normalizar2(serie_texto):
                 if not (token_lem in STOP_WORDS):
                     if len(token_lem) > minimo_caracteres:
                         texto.append(token_lem)
-        texto_unido =  "".join(texto)      
-        print(texto_unido)
+        texto_unido =  " ".join(texto)      
+        #print(texto_unido)
         resultado.append(texto_unido.strip())
     return resultado
 
     
 if __name__ == "__main__":
-    with open(RESULTADOS_DIR + 'proyecto_2009_2024_LIMPIO2_df.pkl', 'rb') as file:
-        proyecto_2009_2024_df = pickle.load(file)
     
-    print("DataFrame original:", proyecto_2009_2024_df.shape) # Leer objeto base -- 97738, 22
-    print(proyecto_2009_2024_df.head())
+    parser = ArgumentParser()
+    parser.add_argument("-d", "--data", type=str, default='proyecto_2009_2024_LIMPIO2_df.pkl')
+    parser.add_argument("-f", "--filter", type=bool, default=True)
+    parser.add_argument("-a", "--atributo", type=str, default='Título')
+    parser.add_argument("-id", "--identificador", type=str, default='Proyecto.ID')
 
-    texto_df = proyecto_2009_2024_df.loc[ # Seleccionar los textos - titulos IL de ley para 2009 a 2024 
-        proyecto_2009_2024_df['Tipo'] == 'LEY' ,
-          ['Proyecto.ID','Título']
-        ]
-    print("DataFrame texto_df:", texto_df.shape) # 35179, 2
-    print(texto_df.info())
-   
-    texto_df['Título procesado'] = texto_df['Título'].copy() # Limpiar texto legislativo
-    texto_df['Título procesado'] = texto_df['Título procesado'].apply(limpiar_texto_basico) # caracteres especiales
+  
+
+    args = vars(parser.parse_args())
+    data = args['data']
+    bandera = args['filter']
+    atributo = args['atributo']
+    identificador = args['identificador']
+
+    with open(RESULTADOS_DIR + str(data), 'rb') as file: # 'proyecto_2009_2024_LIMPIO2_df.pkl'
+        data_df = pickle.load(file)
+    
+    print("DataFrame original:", data_df.shape) # Leer objeto base -- 97738, 22
+    print(data_df.head())
+
+    
+    if bandera:
+        data_df = data_df[ # Seleccionar los textos - titulos IL de ley para 2009 a 2024 
+            data_df['Tipo'] == 'LEY'           
+            ]
+            
+        print("DataFrame filtrador por ley:", data_df.shape) # 35179, 2
+        print(data_df.info())
+    
+    texto_df = data_df[[identificador, atributo]]
+    
+    atributo_nuevo = atributo+" "+"procesado"
+    texto_df[atributo_nuevo] = texto_df[atributo].copy() # Limpiar texto legislativo
+    texto_df[atributo_nuevo] = texto_df[atributo_nuevo].apply(limpiar_texto_basico) # caracteres especiales
     print("Limpieza básica de texto exitosa!!")
     
-    texto_df['Título normalizado'] = texto_df['Título procesado'].copy() 
-    texto_df['Título normalizado'] = normalizar2(texto_df['Título normalizado']) # Normalizar
-    texto_df['Título normalizado'] = texto_df['Título normalizado'].apply(tprep.remove.accents)
+    atributo_nuevo = atributo+" "+"normalizado"
+    texto_df[atributo_nuevo] = texto_df[atributo+" "+"procesado"].copy() 
+    texto_df[atributo_nuevo] = normalizar2(texto_df[atributo_nuevo]) # Normalizar
+    texto_df[atributo_nuevo] = texto_df[atributo_nuevo].apply(tprep.remove.accents)
     print("Normalización de texto exitosa!!")
 
     # Controlar
-    print("Cantidad de IL sin título normalizado:", texto_df[texto_df['Título normalizado']==""].shape)
-
-    with open(RESULTADOS_DIR + 'texto_normalizado_2009_2024_df.pkl', 'wb') as file: # Guardar objeto
+    print("Cantidad de IL sin título normalizado:", texto_df[texto_df[atributo_nuevo]==""].shape)
+    fecha = datetime.datetime.now()
+    print(fecha)
+    
+    with open(RESULTADOS_DIR + 'texto_normalizado_'+str(fecha.strftime("%Y%m%d%H%M"))+'_df.pkl', 'wb') as file: # Guardar objeto
         pickle.dump(texto_df, file)
     print("Se guardo el objeto de texto normalizado")
+    print('texto_normalizado_'+str(fecha.strftime("%Y%m%d%H%M"))+'_df.pkl')
 
-
-
-    
-
-    
     # Procesar la columna "texto_original"
     #df_procesado = procesar_dataframe(df, 'texto_original')
     

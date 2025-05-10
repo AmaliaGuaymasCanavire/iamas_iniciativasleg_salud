@@ -144,23 +144,25 @@ def vecindades_periodosSec (per_lista,m_dir,iter,top_palabras, palabras_menosFre
 
 if __name__ == "__main__":
 
-    umbral_top = 5
-    umbral_frec_menos = 5
-    umbral_frec_menos_full  = 9 
+    # Umbrales cables
+    umbral_top = 0 # antes 5 se eliminan las palabras nacional (836), creacion (628), programa (488), regimen	(485), salud (483). 
+    umbral_frec_menos = 2 # < antes 5 mediana de frecuencia de ocurrencia de palabra en titulos 
+    umbral_frec_menos_full  = 5 # antes 9 < amedia de ocurrencia de palabra en periodo de 5 años
     topn_vecinos = 100
 
     # Config modelo https://radimrehurek.com/gensim/models/word2vec.html
-    tam_vector = 50 # Dimensionalidad de los vectores de palabras.
-    ventana = 10 # ventana ( int , opcional ): distancia máxima entre la palabra actual y la palabra prevista dentro de una oración.
+    tam_vector = 100 # Dimensionalidad de los vectores de palabras.
+    ventana = 8 # ventana ( int , opcional ): distancia máxima entre la palabra actual y la palabra prevista dentro de una oración.
     min_frec = 2 #  Ignora todas las palabras con una frecuencia total menor que esta.
-    w = 4  # utilice estos muchos subprocesos de trabajo para entrenar el modelo (=entrenamiento más rápido con máquinas de múltiples núcleos).
+    w = 1  # utilice estos muchos subprocesos de trabajo para entrenar el modelo (=entrenamiento más rápido con máquinas de múltiples núcleos).
     s = 1 # Algoritmo de entrenamiento: 1 para skip-gram; de lo contrario, CBOW.
-    e = 50 # Número de iteraciones (épocas) en el corpus. (Anteriormente: iter )
+    e = 100 # Número de iteraciones (épocas) en el corpus. (Anteriormente: iter )
     semilla = 1 # seed ( int , opcional ): Semilla para el generador de números aleatorios. 
-    iteracion = 10
+    iteracion = 50
+
 
     # Crear directorio para algoritmo de cambio semántico
-    modelo_dir =  RESULTADOS_DIR+ './archivos_out/modelos/estabilidad_NN/'
+    modelo_dir =  RESULTADOS_DIR+ './archivos_out/modelos_swmwosge_1008211100/estabilidad_NN/'
     if not os.path.exists(modelo_dir):
         print('Creando directorio de modelo...')
         os.makedirs(modelo_dir)
@@ -191,8 +193,10 @@ if __name__ == "__main__":
         print(df.Frecuencia.describe().apply(lambda x: format(x, 'f')))
         df = df.sort_values('Frecuencia', ascending=False)
         frec_anio_dic[anio] = df
-
-        top_palabras_dic[anio] = df.Palabra.head(umbral_top).to_list()
+        if umbral_top>0:
+            top_palabras_dic[anio] = df.Palabra.head(umbral_top).to_list()
+        else:
+            top_palabras_dic[anio] = []
         palabras_menosFrec_dic[anio] = df.loc[df.Frecuencia < umbral_frec_menos].Palabra.to_list()
         palabras_menosFrecFull_dic[anio] = df.loc[df.Frecuencia < umbral_frec_menos_full].Palabra.to_list()
 
@@ -248,14 +252,9 @@ if __name__ == "__main__":
     iter_periodos_df = iter_periodos_df.sort_values('similaridad_semantica', ascending =False)
     
     print('Palabras con mayor score / mayor cambio')
-    print(iter_periodos_df.head(20))                                                    
+    print(iter_periodos_df.head(10))                                                    
 
-    print('Palabras con menor score / menor cambio')
-    print(iter_periodos_df.tail(20))
-
-
-
-    iter_periodos_df.to_csv(RESULTADOS_DIR+'/archivos_out/estabilidad_NN'+'_iter'+str(iteracion)+
+    iter_periodos_df.to_csv(modelo_dir+'/estabilidad_NN'+'_iter'+str(iteracion)+
                             '_tam'+str(tam_vector)+'.csv', 
                             index=False)
 
@@ -289,7 +288,7 @@ if __name__ == "__main__":
     plt.xlabel('k', fontsize=18)
     plt.ylabel('Interseccion@k', fontsize=18)
     plt.title('Estabilidad por NN', fontsize=20)
-    plt.savefig(RESULTADOS_DIR+'/archivos_out/estabilidad_NN'+'_iter'+str(iteracion)+
+    plt.savefig(modelo_dir+'/estabilidad_NN'+'_iter'+str(iteracion)+
                             '_tam'+str(tam_vector)+'.png', dpi=200,  bbox_inches='tight')
 
     
