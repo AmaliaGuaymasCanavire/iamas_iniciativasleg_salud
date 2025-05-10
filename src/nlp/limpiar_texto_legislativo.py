@@ -263,7 +263,8 @@ if __name__ == "__main__":
     
     parser = ArgumentParser()
     parser.add_argument("-d", "--data", type=str, default='proyecto_2009_2024_LIMPIO2_df.pkl')
-    parser.add_argument("-f", "--filter", type=bool, default=True)
+    parser.add_argument("-dir", "--dir", type=str, default=RESULTADOS_DIR)
+    parser.add_argument("-f", "--filter", type=int, default=1)
     parser.add_argument("-a", "--atributo", type=str, default='Título')
     parser.add_argument("-id", "--identificador", type=str, default='Proyecto.ID')
 
@@ -271,18 +272,20 @@ if __name__ == "__main__":
 
     args = vars(parser.parse_args())
     data = args['data']
+    directorio = args['dir']
     bandera = args['filter']
     atributo = args['atributo']
     identificador = args['identificador']
 
-    with open(RESULTADOS_DIR + str(data), 'rb') as file: # 'proyecto_2009_2024_LIMPIO2_df.pkl'
+
+    with open(directorio + str(data), 'rb') as file: # 'proyecto_2009_2024_LIMPIO2_df.pkl'
         data_df = pickle.load(file)
     
     print("DataFrame original:", data_df.shape) # Leer objeto base -- 97738, 22
     print(data_df.head())
 
-    
-    if bandera:
+    print(bandera)
+    if bandera==1:
         data_df = data_df[ # Seleccionar los textos - titulos IL de ley para 2009 a 2024 
             data_df['Tipo'] == 'LEY'           
             ]
@@ -304,11 +307,11 @@ if __name__ == "__main__":
     print("Normalización de texto exitosa!!")
 
     # Controlar
-    print("Cantidad de IL sin título normalizado:", texto_df[texto_df[atributo_nuevo]==""].shape)
+    print("Cantidad de IL sin " + atributo +" normalizado:", texto_df[texto_df[atributo_nuevo]==""].shape)
     fecha = datetime.datetime.now()
     print(fecha)
     
-    with open(RESULTADOS_DIR + 'texto_normalizado_'+str(fecha.strftime("%Y%m%d%H%M"))+'_df.pkl', 'wb') as file: # Guardar objeto
+    with open(directorio + 'texto_normalizado_'+str(fecha.strftime("%Y%m%d%H%M"))+'_df.pkl', 'wb') as file: # Guardar objeto
         pickle.dump(texto_df, file)
     print("Se guardo el objeto de texto normalizado")
     print('texto_normalizado_'+str(fecha.strftime("%Y%m%d%H%M"))+'_df.pkl')
