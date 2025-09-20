@@ -282,16 +282,12 @@ if __name__ == "__main__":
         data_df = pickle.load(file)
     
     print("DataFrame original:", data_df.shape) # Leer objeto base -- 97738, 22
-    data_df = data_df[data_df['Periodo'].notna()] # controlar periodo
-
     print(data_df.head())
-    
-    
+
     print(bandera)
     if bandera==1:
         data_df = data_df[ # Seleccionar los textos - titulos IL de ley para 2009 a 2024 
-            data_df['Tipo'] == 'LEY'   
-            
+            data_df['Tipo'] == 'LEY'           
             ]
             
         print("DataFrame filtrador por ley:", data_df.shape) # 35179, 2
