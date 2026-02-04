@@ -1,0 +1,266 @@
+Estudios relevantes sobre corpus pequeños y embeddings
+
+
+1. Modeling semantic change with word embeddings using small historical corpora
+Contexto: Se centra en el español medieval, con corpus reducidos. Evalúa la estabilidad y aplicabilidad de embeddings entrenados en corpus pequeños.
+Método: Usan ejes de evaluación para comprobar que incluso con pequeños corpora históricos es posible detectar cambios semánticos relevantes.
+
+
+https://academic.oup.com/dsh/article-abstract/37/2/441/6357326?redirectedFrom=fulltext
+
+
+2. Literary Intertextual Semantic Change Detection: Application and Motivation for Evaluating Models on Small Corpora (Ehrenworth & Keith, 2023)
+Contexto: Detección de cambio semántico entre dos libros (corpus de tamaño similar a tu caso, ~150 k tokens).
+Método: Presentan un repositorio con corpus pequeños, modelos y scripts de prueba para la evaluación de cambios semánticos. No usan Procruste directamente, pero proporciona entorno de prueba útil.
+Repositorio: GIThub con ejemplos de pequeños corpus y detección de cambio semántico.
+
+
+https://github.com/jnehrenworth/small-corpora-scd?utm_source=chatgpt.com
+https://aclanthology.org/2023.lchange-1.1/
+
+
+Detalles del estudio: “Literary Intertextual Semantic Change Detection: Application and Motivation for Evaluating Models on Small Corpora” (Ehrenworth & Keith, 2023)
+
+Enlace al paper: Lectura directa del PDF
+ 
+ACL Anthology
+
+1. Contexto y objetivo central
+
+El trabajo se enfoca en la detección de cambio semántico léxico—es decir, cómo el significado de las palabras varía entre diferentes corpora—cuando los corpus son muy pequeños, como los que se utilizan en estudios literarios o humanidades digitales (por ejemplo, libros individuales).
+
+Este enfoque se justifica frente al estándar establecido por Schlechtweg et al. (2020) —SemEval-2020 Task 1—que utiliza corpora muy grandes (más de 1.7 millones de tokens) y tiene métricas de evaluación robustas, pero poco adecuadas para contextos con menos datos 
+ACL Anthology
+.
+
+2. Contribuciones principales
+
+Pipeline de downsampling:
+Desarrollan y comparten un método (y código abierto) para reducir el tamaño de los corpus SemEval a pequeños, manteniendo las anotaciones gold-standard de cambio semántico. Esto permite simular situaciones reales de corpus pequeños sin perder las referencias de verdad anotada 
+ACL Anthology
+.
+
+Evaluación de modelos en corpus reducidos:
+Evaluaron varios modelos de detección de cambio semántico (no supervisados), y encontraron una caída drástica en su desempeño (con una reducción promedio del 67%) y además una variabilidad altísima entre resultados 
+ACL Anthology
+
+
+---- Rosin y Radinsky (2022), el modelo de detección de cambios semánticos contextualizados de código abierto de mayor rendimiento en la Subtarea 2 que conocemos (Montanelli y Periti, 2023).
+Los autores proponen un mecanismo de autoatención temporal como modificación de la arquitectura estándar de transformadores. Utilizan un modelo BERT preentrenado, lo ajustan con precisión en corpus diacrónicos mediante su mecanismo de atención temporal propuesto y, a continuación, crean representaciones temporales de las palabras objetivo mediante la extracción y el promedio de los pesos de la capa oculta.
+Estas representaciones se promedian a nivel de token y se comparan utilizando coseno similar.
+
+Aplicación en humanidades digitales – cambio intertextual:
+Proponen una aplicación innovadora: crear un ranking de palabras según su grado de cambio semántico entre dos libros, lo que facilita la exploración literaria comparativa. Realizan un estudio de caso comparando “Los condenados de la tierra” (Fanon) con “Escenas de sujeción” (Hartman), mostrando que incluso con baja precisión, los modelos pueden sugerir términos de interés para estudios literarios 
+ACL Anthology
+.
+
+3. ¿Por qué es relevante para tu tesis?
+
+Refuerza tu enfoque metodológico sobre el uso de corpus pequeños y dominios especializados.
+
+Justifica la evaluación cuidadosa de modelos en contextos con baja cantidad de datos.
+
+Introduce una aplicación exploratoria de cambio semántico que puede inspirarte en análisis legislativos comparativos: un ranking de términos clave entre períodos o textos normativos.
+
+Destaca que, aunque los modelos fallen en métricas tradicionales, pueden ofrecer exploraciones útiles, lo cual es valioso en dominios como el legislativo o salud pública.
+
+
+
+
+4. Effects of Pre- and Post-Processing on type-based Embeddings in Lexical Semantic Change Detection (Kaiser et al., 2021)
+Contexto: Aborda problemas con corpus pequeños. Proponen pre-entrenar modelos con grandes corpus y luego "refinarlos" con datos temporales (pequeños).
+Método: Combinan embeddings con técnicas antes y después del entrenamiento para mejorar la detección semántica.
+
+https://aclanthology.org/2021.eacl-main.10.pdf?utm_source=chatgpt.com
+https://github.com/Garrafao/LSCDetection
+
+
+5.
+Resumen: Embedding Regression: Models for Context-Specific Description and Inference
+
+Autores: Pedro L. Rodríguez, Arthur Spirling, Brandon M. Stewart (2023)
+Revista: American Political Science Review (Vol. 117, Núm. 4)
+Enlace al PDF: Artículo completo
+https://github.com/prodriguezsosa/conText/blob/master/vignettes/quickstart.md
+https://github.com/NLPrinceton/ALaCarte
+ 
+arthurspirling.org
+Brandon Stewart
+
+1. Contexto y problema principal
+
+En las ciencias sociales se busca comprender cómo cambia el uso de las palabras según el contexto —por ejemplo, entre partidos políticos, períodos temporales o situaciones institucionales. Los enfoques tradicionales requieren grandes cantidades de texto o no permiten hacer inferencia estadística robusta 
+arthurspirling.org
+Brandon Stewart
+.
+
+2. Propuesta metodológica: el modelo conText
+
+Presentan el modelo "à la carte on text (conText) embedding regression”:
+
+Se basa en el concepto de embeddings à la carte (ALC), donde embeddings pre-entrenados (como Word2Vec o GloVe) se adaptan a contextos específicos mediante una transformación lineal (matriz A) aplicada a la media de los embeddings del contexto 
+arthurspirling.org
+bohrium.com
+.
+
+Permite estimar el embeddings de una palabra en diferentes contextos (como un partido político o un período temporal) incluso con muy pocos ejemplos.
+
+En un framework similar a una regresión, el modelo genera coeficientes (β₀ y β₁…) que representan cada versión contextual de la palabra, y permite calcular la distancia (coseno) entre ellas 
+arthurspirling.org
+.
+
+3. Ventajas clave
+
+Es rápido, transparente y computacionalmente ligero.
+
+Funciona bien incluso con pocos documentos, en contraste con enfoques más complejos que exigen datos abundantes.
+
+Permite pruebas de hipótesis y cálculo de significancia estadística, usando técnicas como permutation testing para la evaluación de diferencias 
+arthurspirling.org
+.
+
+4. Casos de uso ilustrativos
+
+Polarización política en EE. UU.: detecta diferencias en cómo republicanos y demócratas usan términos como “immigration”.
+
+Evolución histórica de términos: analiza cambios en el sentido de palabras como “Empire” en Reino Unido y EE. UU.
+
+Sentimiento político: detecta diferencias entre liderazgo y legisladores (backbenchers) en el discurso sobre la Unión Europea 
+bohrium.com
+arthurspirling.org
+.
+
+5. Relevancia para tu tesis
+
+Este enfoque metodológico es muy pertinente para tu trabajo porque:
+
+Permite analizar términos legislativos con corpus pequeños, como tus títulos de proyectos de ley.
+
+Facilita comparar el significado de palabras clave en distintos períodos o temas (como salud y muerte súbita).
+
+Incluye inferencia estadística —no solo descripción— para respaldar tus conclusiones con rigor.
+
+6. Visual sugerida para tu tesis
+
+Un buen gráfico para explicar el modelo podría ser:
+
+Esquema del modelo conContext:
+
+Embedding pre-entrenado + media del contexto → transformación lineal → embedding contextual.
+
+Mostrar los vectores adaptados (β₀ vs β₁) y su distancia coseno.
+
+Pequeña nota indicando el cálculo de significancia (p-value) vía permutaciones.
+
+https://www.cambridge.org/core/journals/american-political-science-review/article/embedding-regression-models-for-contextspecific-description-and-inference/4C90013E5C714C8483ED95CC699022FB
+
+https://www.youtube.com/watch?v=VmV2yRVvFHY
+https://www.tandfonline.com/doi/full/10.1080/17457289.2024.2433979#d1e1179
+https://alcembeddings.org/alccode
+https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F5DE16FA784CA81481150715967BD9FC/S1047198724000172a.pdf/multilanguage-word-embeddings-for-social-scientists-estimation-inference-and-validation-resources-for-157-languages.pdf
+
+
+6.
+Resumen del estudio
+
+Título: Historical Ink: Semantic Shift Detection for 19th Century Spanish
+Autores: Tony Montes, Laura Manrique-Gómez, Rubén Manrique
+Publicación: Proceedings of the 5th Workshop on Computational Approaches to Historical Language Change, ACL, 2024 
+ACL Anthology
+arxiv.org
+
+1. Objetivo y contexto
+
+Analiza cómo ha evolucionado el significado de palabras en el español del siglo XIX, con foco en el español latinoamericano.
+
+Desarrolla un corpus histórico (1800–1914) y una pipeline personalizada para detectar cambios semánticos entre dos épocas comparadas: el siglo XIX y el presente 
+arxiv.org
++1
+.
+
+2. Metodología
+
+Construcción del corpus
+
+Fuentes: Project Gutenberg, Biblioteca Británica y el dataset LatamXIX (ejemplares de periódicos latinoamericanos) 
+arxiv.org
+.
+
+Preprocesamiento: limpieza, tokenización y partición en segmentos óptimos para procesar con modelos BERT-like.
+
+Modelo de embeddings contextuales
+
+Utilizan modelos tipo BETO (BERT en español) ajustados mediante fine-tuning con el corpus histórico para capturar contextos y formas antiguas del español 
+arxiv.org
+.
+
+Detección de cambio semántico
+
+Extraen embeddings de cada ocurrencia de las palabras objetivo en ambos corpora.
+
+Aplican clustering (Affinity Propagation y K-Means) para identificar los distintos sentidos existentes.
+
+Construyen gráficos llamados Diachronic Word Usage Graphs (DWUGs) para visualizar cambios en los sentidos 
+Moonlight
+.
+
+Medición cuantitativa del cambio
+
+Emplean dos métricas principales:
+
+Distancia del coseno (Cosine Distance, CD)
+
+Similaridad invertida respecto al prototipo de la palabra (PRT) 
+Moonlight
+.
+
+3. Resultados destacados
+
+Significados perdidos o ganados:
+Ejemplo de “infancia”: pasó de aludir a estados figurativos como “infancia de la nación” a significar “niñez” en uso moderno 
+Moonlight
+arxiv.org
+.
+Ejemplo de “mujeres”: su significado se amplió, reflejando cambios culturales hacia una inclusión más amplia 
+Moonlight
+.
+
+Visualizaciones ilustrativas:
+Mediante reducción de dimensionalidad (por ejemplo, PCA), muestran la transformación de palabras como “revolución”, que cambia de asociarse con términos como “sangre” o “sabio” en el siglo XIX a entornos como “rey”, “razón” en el presente 
+arxiv.org
+Change Is Key!
+.
+
+4. Contribuciones principales
+
+Desarrollo de un corpus histórico robusto en español latinoamericano del siglo XIX.
+
+Una pipeline modular y reutilizable para SSD con embeddings contextuales finamente afinados.
+
+Demostración visual y cuantitativa de cambios semánticos profundos relacionados con transformaciones sociales e históricas 
+ACL Anthology
+arxiv.org
+Moonlight
+.
+
+Relevancia para tu tesis
+
+Este trabajo es directamente aplicable a tu tema porque:
+
+Opera con cortes históricos y vocabularios especializados similares al tuyo (iniciativas legislativas).
+
+Usa modelos contextuales (BETO), sintonizados con el dominio, como podría hacerse para los títulos legislativos.
+
+Incluye visualizaciones accesibles y explicativas que podrías adaptar (por ejemplo, cambios de sentidos a través del tiempo con PCA o t-SNE).
+
+https://arxiv.org/pdf/2407.12852
+
+
+https://media.proquest.com/media/hms/PFT/1/1dE9d?_s=LLcVu06U%2FU67QReuKpqkI5KUpmw%3D
+https://github.com/historicalink/LatamXIX
+Diachronic
+Word Usage Graphs (DWUGs) (Schlechtweg et al. 2021), w
+
+
+https://arxiv.org/pdf/2304.01666
+

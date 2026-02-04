@@ -1,0 +1,57 @@
+palabra,numero_cluster,periodo_2009,periodo_2014,periodo_2019,ejemplos
+materia,0,0.0,0.16666666666666666,0.0,(desconocido): declarar emergencia publicar materia social administrativo violencia familiar genero
+materia,1,0.0,0.0,0.75,(desconocido): declarar emergencia nacional materia consumo problematico plazo ano prorrogable | (desconocido): declarar emergencia nacional materia consumo problematico territorio republica argentino | (desconocido): declarar emergencia socio sanitario materia consumo problematico sustancia psicoactiva ambito
+materia,2,0.5,0.0,0.0,(desconocido): programa nacional concientizacion asistencia materia adopcion creacion ambito ministerio desarrollo
+materia,3,0.0,0.16666666666666666,0.0,(desconocido): dedicado investigacion produccion publicar medicamento materia primo produccion medicamento vacuna producto
+materia,4,0.5,0.16666666666666666,0.25,(desconocido): futbol regimen presupuesto minimo necesario materia prevencion atencion primaria basica | (desconocido): consentimiento informado materia vacunacion | (desconocido): emergencia sanitario nacional plazo ano materia prestacion vih infeccion trasmision sexual
+materia,5,0.0,0.16666666666666666,0.0,(desconocido): garantizar informacion estadistica sanitario materia muerte internacion complicacion sanitario producido
+materia,6,0.0,0.3333333333333333,0.0,(desconocido): politica publica materia vacunacion garantizar acceso pueblo indigena | (desconocido): argentino destinado medicion cumplimiento obligacion materia derechos economico social cultural creacion
+forma,0,0.14285714285714285,0.0,0.0,(desconocido): mujer acceder practica tendran derecho forma gratuito reconstruccion mamario
+forma,1,0.2857142857142857,0.14285714285714285,0.5,(desconocido): prevencion control forma transmision enfermedad chagas considerar prioritario | (desconocido): prevencion control forma transmision enfermedad chagas realizacion examen | (desconocido): prevencion control forma transmision enfermedad chagas realizacion examen | (desconocido): salud publicar notificacion tiempo forma enfermedad infeccioso actualizacion multa correspondiente
+forma,2,0.14285714285714285,0.2857142857142857,0.0,(desconocido): declarar gratuidad absoluto prohibir cualquiera forma cobro directo indirecto | (desconocido): inclusion gramo uva pasar cualquiera forma empaquetado condicion higiene complemento dieta | (desconocido): relacionado tratamiento campanas educativo cualquiera forma difusion
+forma,3,0.14285714285714285,0.2857142857142857,0.5,(desconocido): prohibicion forma directo indirecto publicidad promocion patrocinio | (desconocido): salud mental ley derogacion articulo forma abordar adiccion | (desconocido): sistema tecnica masaje forma regimen | (desconocido): forma organizacion funcionamiento modalidad atencion salud
+forma,4,0.2857142857142857,0.2857142857142857,0.0,(desconocido): campana anual deteccion realizacion estudio forma gratuito | (desconocido): certificado discapacidad otorgar forma permanente persona poseer diagnostico certeza | (desconocido): apto persona alergica proteina huevo forma derivado | (desconocido): ofrecer agua apto consumo humano forma gratuito
+ingreso,0,0.0,0.2,0.0,(desconocido): libre gratuito disponer instalacion conservacion ingreso playa publica puesto guardavida
+ingreso,1,0.2,0.0,0.0,(desconocido): ingreso basico ninez regimen impuesto ganancia
+ingreso,2,0.4,0.2,0.0,(desconocido): fondo ingreso ciudadano ninez fincini creacion | (desconocido): creacion fondo ingreso ciudadano ninez fincini serar administrar | (desconocido): fondo ingreso ciudadano ninez fincini creacion
+ingreso,3,0.0,0.0,0.4,(desconocido): inembargabilidad prohibicion deduccion debito bancario ingreso familiar emergencia ife | (desconocido): incorporese beneficiario ingreso familiar emergencia ife habitante residencia
+ingreso,4,0.0,0.2,0.0,(desconocido): inscripta monotributista categoria administracion federal ingreso publico afip derogacion articulo
+ingreso,5,0.0,0.2,0.0,(desconocido): prevencion deteccion ingreso persona infectado virus conocido nombre
+ingreso,6,0.2,0.0,0.0,(desconocido): medico obligatorio pmo pauta antidiscriminatoria ingreso laboral
+ingreso,7,0.0,0.0,0.2,(desconocido): obligatoriedad otorgar ingreso adicional especifico emergencia obra social
+ingreso,8,0.0,0.0,0.2,(desconocido): fortalecimiento ingreso sector popular regimen
+ingreso,9,0.2,0.0,0.0,(desconocido): prohibicion ingreso persona geriatrico centro salud mental
+ingreso,10,0.0,0.0,0.2,(desconocido): nacional seguridad social jubilado pensionado ingreso mensual superen indice canasta basico
+ingreso,11,0.0,0.2,0.0,(desconocido): control fiscal renta ingreso proveniente explotacion maquina azar regimen
+derivado,0,0.3333333333333333,0.1111111111111111,0.0,(desconocido): restriccion publicidad producto tabaco derivado exhibicion obligatorio advertencia imagen envase | (desconocido): utilizacion cloro derivado limpieza mantenimiento tanque agua establecimiento
+derivado,1,0.0,0.2222222222222222,0.16666666666666666,(desconocido): alimento contengan organismo geneticamente modificado derivado establecer obligatoriedad identificacion | (desconocido): alimento contengan organismo geneticamente modificado derivado establecer obligatoriedad identificacion | (desconocido): alimento contengan organismo geneticamente modificado derivado establecer obligatoriedad identificacion
+derivado,2,0.0,0.2222222222222222,0.0,(desconocido): prevencion proteccion riesgo derivado exposicion rayo ultravioleta regimen | (desconocido): prevencion proteccion riesgo derivado exposicion rayo ultravioleta regimen
+derivado,3,0.0,0.2222222222222222,0.0,(desconocido): hipercolesterolemia familiar divulgacion concientizacion implicancia derivado enfermedad | (desconocido): hipercolesterolemia familiar divulgacion concientizacion implicancia derivado enfermedad
+derivado,4,0.0,0.0,0.3333333333333333,(desconocido): regimen legalizacion cannabis semilla derivado territorio nacional | (desconocido): comercializacion adquisicion cualquiera titulo cannabis derivado territorio nacional regimen
+derivado,5,0.6666666666666666,0.0,0.0,(desconocido): contengan organismo geneticamente modificado ogm derivado | (desconocido): exencion impositivo producto contener gluten derivado
+derivado,6,0.0,0.0,0.3333333333333333,(desconocido): produccion distribucion comercializacion adquisicion cannabis derivado | (desconocido): medica cientifico medicinal planta cannabis derivado
+derivado,7,0.0,0.0,0.16666666666666666,(desconocido): ley autorizacion autocultivo colectivo produccion derivado consumo personal familiar medicinal
+derivado,8,0.0,0.1111111111111111,0.0,(desconocido): persona alergica proteina huevo forma derivado
+derivado,9,0.0,0.1111111111111111,0.0,(desconocido): programa nacional prevencion salud riesgo derivado agroquimico creacion ambito ministerio salud
+argentina,0,0.3333333333333333,1.0,0.7142857142857143,(desconocido): comision nacional bioetica republica argentina creacion | (desconocido): carbono gas natural territorio republica argentina creacion comision asesoramiento cientifico tecnologico | (desconocido): agua establecimiento educativo territorio republica argentina prohibicion | (desconocido): emergencia sanitario social ambiental republica argentina diciembre | (desconocido): sistema residencia profesional salud republica argentina creacion derogacion ley
+argentina,1,0.6666666666666666,0.0,0.2857142857142857,(desconocido): declarar nacional argentina chagas viernes mes agosto ano | (desconocido): control producto cigarrillo comercializado fabricado argentina | (desconocido): crear registro unico cancer argentina ruca | (desconocido): incorporacion vacuna aplicado sistema digital argentina
+tipo,0,0.1111111111111111,0.0,0.0,(desconocido): gripe causado virus influenza tipo subtipo h1n1 declarar emergencia sanitario
+tipo,1,0.2222222222222222,0.0,0.0,(desconocido): vacuna virus papiloma humano tipo incorporacion calendario nacional vacunacion caracter | (desconocido): vacuna virus papiloma humano tipo incorporacion calendario nacional vacunacion caracter
+tipo,2,0.1111111111111111,0.2,0.0,(desconocido): entidad medico asistencial prohibicion cualquiera tipo cobro adicional implicar incremento cuota | (desconocido): aviso publicacion publicidad cualquiera tipo mensaje promover compra consumo medicamento
+tipo,3,0.3333333333333333,0.0,0.0,(desconocido): gripe tipo h1n1 declarar emergencia sanitario aparicion | (desconocido): gripe tipo h1n1 declarar emergencia sanitario enfermedad | (desconocido): gripe tipo h1n1 declarar emergencia sanitario territorio
+tipo,4,0.0,0.4,0.0,(desconocido): gimnasio establecimiento dedicado ensenanza practica tipo actividad | (desconocido): gimnasio establecimiento dedicado ensenanza practica tipo actividad
+tipo,5,0.0,0.0,0.3333333333333333,(desconocido): medicina prepagar persona poseer algun tipo discapacidad
+tipo,6,0.0,0.2,0.3333333333333333,(desconocido): incorporar cobertura enfermedad niemann pick tipo | (desconocido): crear registro nacional persona diabetes tipo
+tipo,7,0.0,0.0,0.3333333333333333,(desconocido): condicion tecnica identificacion fecha vencimiento tipo medicamento droga persona dificultad visual
+tipo,8,0.1111111111111111,0.2,0.0,(desconocido): zona compresion reforzado punto ataque tipo philipp incorporacion cobertura prestacion medica | (desconocido): importacion comercializacion distribucion cualquiera titulo tipo vacuna compuesto contener cualquiera nivel
+tipo,9,0.1111111111111111,0.0,0.0,(desconocido): tratamiento enfermedad tipo anticoagulante incluir prevencion deteccion mujer
+legal,0,0.0,0.3333333333333333,0.0,(desconocido): autopsia medico legal obligatoriedad practicar persona fallecido menor | (desconocido): autopsia medico legal obligatoriedad practicar persona fallecido menor
+legal,1,0.0,0.16666666666666666,0.16666666666666666,(desconocido): plan medico obligatorio garantizar interrupcion legal embarazo ile | (desconocido): plan medico obligatorio garantizar interrupcion legal embarazo ile
+legal,2,0.5,0.0,0.0,(desconocido): regimen legal ejercicio medicina odontologia actividad auxiliar
+legal,3,0.0,0.0,0.16666666666666666,(desconocido): familiar emergencia ife habitante residencia legal republica argentino
+legal,4,0.0,0.3333333333333333,0.0,(desconocido): investigacion produccion medicamento realizacion interrupcion legal embarazos | (desconocido): produccion publicar medicamento esencial interrupcion legal embarazos regimen
+legal,5,0.0,0.0,0.16666666666666666,(desconocido): dano asociado consumo sustancia psicoactiva legal ilegalizada creacion
+legal,6,0.5,0.0,0.0,(desconocido): regimen legal loteria nacional ley decreto norma
+legal,7,0.0,0.16666666666666666,0.0,(desconocido): promover compra consumo medicamento droga legal complejo vitaminico energizant terapia tratamiento
+legal,8,0.0,0.0,0.3333333333333333,(desconocido): regimen legal ejercicio profesional instrumentacion quirurgico | (desconocido): regimen legal ejercicio profesional instrumentacion quirurgico
+legal,9,0.0,0.0,0.16666666666666666,(desconocido): obligatoriedad practicar autopsia medico legal persona fallecido menor ano edad
