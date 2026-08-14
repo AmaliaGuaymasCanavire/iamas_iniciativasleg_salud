@@ -13,6 +13,7 @@ __pycache__/
 
 # Jupyter
 .ipynb_checkpoints/
+**/.ipynb_checkpoints/
 
 # Imágenes locales de trabajo
 imagenes/
