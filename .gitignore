@@ -3,3 +3,5 @@ myenv_IL
 __pycache__/
 *.py[cod]
 .pytest_cache/
+src/data
+doc_base_anteEstabilidad/
