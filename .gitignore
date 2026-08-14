@@ -2,7 +2,7 @@
 myenv_IL/
 .venv
 venv/
-env/
+.env
 
 # VSCode
 .vscode/
