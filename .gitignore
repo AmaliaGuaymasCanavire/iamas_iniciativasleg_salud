@@ -29,6 +29,11 @@ imagenes/
 data/raw/
 src/data
 doc_base_anteEstabilidad/
+src/notebooks/model/
+src/notebooks/muerte_subita/
+src/notebooks/visualizacion/
+src/notebooks/web-scraping/
+
 
 # Archivos temporales
 *.log
