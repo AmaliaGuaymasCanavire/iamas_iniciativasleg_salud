@@ -26,6 +26,7 @@ imagenes/
 *.model
 
 # Datos grandes
+papers/todos/
 data/raw/
 src/data
 doc_base_anteEstabilidad/
