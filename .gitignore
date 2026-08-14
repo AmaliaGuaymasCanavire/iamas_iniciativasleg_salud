@@ -1,4 +1,7 @@
-myenv_IL
+myenv_IL/
+imagenes/
+.venv/
+.vscode/
 .env
 __pycache__/
 *.py[cod]
