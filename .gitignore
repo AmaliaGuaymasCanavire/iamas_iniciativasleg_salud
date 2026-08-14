@@ -1,10 +1,37 @@
+# Entornos
 myenv_IL/
-imagenes/
-.venv/
+.venv
+venv/
+env/
+
+# VSCode
 .vscode/
-.env
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Imágenes locales de trabajo
+imagenes/
+
+
+# Modelos pesados
+*.bin
+*.pt
+*.pth
+*.model
+
+# Datos grandes
+data/raw/
 src/data
 doc_base_anteEstabilidad/
+
+# Archivos temporales
+*.log
+*.tmp
+*.aux
+*.out
+*.toc
