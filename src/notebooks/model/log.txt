@@ -1,2 +1,0 @@
-
-2025-04-18 02:45:33,446 : INFO : files read into PathLineSentences:C:/Users/Usuario/iamas_iniciativasleg_salud/src/data/./archivos_out/modelos/estabilidad_compass/all_2009_2014.txt
