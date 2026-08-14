@@ -37,7 +37,7 @@ def smart_procrustes_align_gensim(base_embed, other_embed, words=None):
     Reemplaza las matrices numpy `syn0` y `syn0norm` del modelo `other_embed` con la versión alineada.
     Devuelve `other_embed`.
     Si `words` está definido, interseca el vocabulario de los dos modelos con el vocabulario en `words` (consulta la documentación de `intersection_align_gensim`).    """
-
+    # https://neurodatascience.github.io/fmralign-tutorials/1-2-procrustes.html
     # Parche de Richard So [https://twitter.com/richardjeanso] (¡gracias!) para actualizar este código para la nueva versión de gensim
     # base_embed.init_sims(replace=True)
     # other_embed.init_sims(replace=True)
@@ -62,7 +62,8 @@ def smart_procrustes_align_gensim(base_embed, other_embed, words=None):
     # otra operación de matriz
     ortho = u.dot(v) 
 
-    # Reemplazar la matriz original con una modificada, es decir, multiplicando la matriz de incrustación por "orto
+    # Reemplazar la matriz original con una modificada, es decir, 
+    # multiplicando la matriz de incrustación por "orto
     other_embed.wv.vectors = (other_embed.wv.vectors).dot(ortho)    
     
     return other_embed
